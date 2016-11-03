@@ -1,0 +1,8 @@
+/node_modules
+indexFile.json
+npm-debug.log
+.DS_Store
+contents/.DS_Store
+src_dest
+error
+courses

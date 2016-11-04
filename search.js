@@ -49,12 +49,9 @@ let getSnippet = (query, content) => {
   return snippet
 }
 
-
 rl.question('Input query : ', (query) => {
   console.log('>>> Start Search <<<')
-  let ans = idx.search(query, {
-    expand: true
-  })
+  let ans = idx.search(query).slice(0,10)
   let ansMaps = ans.map((value) => {
     let ansMap = idx.documentStore.getDoc(value.ref)
       ansMap.snippet = getSnippet(query.toLowerCase(), ansMap.content)

@@ -4,30 +4,33 @@ const fs = require('fs')
 const request = require('sync-request')
 const cheerio = require('cheerio')
 const urlmodule = require("url");
-const base64url = require('base64-url');
+// const base64url = require('base64-url');
 const HTTPStatus = require('http-status');
 const robotto = require('robotto');
 
-const LIMIT = 10, TIMEOUT = 10000, STARTER_URL = 'http://www.human.ku.ac.th/newdesign/index.php/th/'
-let q_urls = [], visited_urls = [], success_urls = [], error_urls = []
-let looping, currentHost = '', currentUrl = '', src_dest = '', courses = []
+const LIMIT = 1000, TIMEOUT = 10000, STARTER_URL = 'https://mike.cpe.ku.ac.th/seed/'
+let q_urls = [], visited_urls = [], success_urls = [], error_urls = [], countVisited = 0, countSuccess = 0
+let looping, currentHost = '', currentUrl = '', src_dest = '', courses = [], userAgent = 'Chutiphon.k'
 
 let requestOption = {
-	timeout: 10000,
+	timeout: TIMEOUT,
 	headers: {
-		'User-Agent': 'Chutiphon.k'
+		'User-Agent': userAgent
 	}
 }
 
 let checkBot = () => {
-	if(q_urls.length == 0 || visited_urls.length >= LIMIT){
+	if(q_urls.length == 0 || success_urls.length == LIMIT){
 		console.log('>>> Stop Crawler <<<')
 		clearInterval(looping)
-		let sumCourses = courses.reduce((sum, course) => sum + course + '\n','')
-		fs.writeFileSync('./courses', sumCourses, 'utf8')
+		// let sumCourses = courses.reduce((sum, course) => sum + course + '\n','')
+		fs.writeFileSync('./courses.json', JSON.stringify(courses, null, 2), 'utf8')
 		fs.writeFileSync('./src_dest', src_dest, 'utf8')
-		let sumError  = error_urls.reduce((sum, url) => sum + `url : ${url.url}\n--> message : ${url.status_message}\n`,'')
-		fs.writeFileSync('./error', sumError, 'utf8')
+		fs.writeFileSync('./error.json', JSON.stringify(error_urls, null, 2), 'utf8')
+		fs.writeFileSync('./success.json', JSON.stringify(success_urls, null, 2), 'utf8')
+		console.log('Error Website : ', error_urls.length)
+		console.log('Courses : ')
+		console.log(courses)
 		return true
 	} else {
 		return false
@@ -49,14 +52,15 @@ let getUrl = (data) => {
 }
 
 let filterUrl = (url) => {
-	let regx = /\.(jpg|gif|png|pdf|ppt|pptx|rar|zip|doc|docx|xlsx|mp4)/gi
+	let regx = /(jpg|gif|png|pdf|ppt|pptx|rar|zip|doc|docx|xlsx|mp4|time|%)/gi
+	let urlParse = urlmodule.parse(url)
 	if([...visited_urls,...q_urls].includes(url)){
 		return false
-	}
-	else if(regx.test(url)) {
+	} else if(regx.test(url)) {
 		return false
-	}
-	else{
+	} else if(error_urls.filter((error_url) => (error_url.url.indexOf(urlmodule.parse(url).host) >= 0)).length >= 3){
+		return false
+	} else{
 		return true		
 	}
 }
@@ -73,7 +77,7 @@ let pushUrl = (urls) => {
 
 
 let saveContent = (url, content) => {
-	fs.writeFileSync('./contents/' + base64url.encode(url), content, 'utf8')
+	fs.writeFileSync('./contents/' + countSuccess, content, 'utf8')
 }
 
 let setCurrentHost = (url) => {
@@ -100,29 +104,35 @@ let getCourse = (data) => {
 
 let requestFunc = (url) => {
 	visited_urls.push(url)
-	setCurrentHost(url)
+	++countVisited
+	// setCurrentHost(url)
 	try {
 		let res = request('GET',url,requestOption)
 		if(res.statusCode < 400){
 			currentUrl = url
+			++countSuccess
 			success_urls.push(url)
-			getCourse(res.getBody('utf8'))
 			saveContent(url, res.getBody('utf8'))
-			let urls = getUrl(res.body)
-			pushUrl(urls)
+			if(url == 'http://www.eng.ku.ac.th/?page_id=9690'){
+				getCourse(res.getBody('utf8'))				
+			}
+			if(q_urls.length < 50){
+				let urls = getUrl(res.body)
+				pushUrl(urls.splice(0,50 - q_urls.length))
+			}
 		} else{
 			error_urls.push({
 				url,
 				status_message: HTTPStatus[res.statusCode]
 			})
-			console.log('status_message : ' ,HTTPStatus[res.statusCode])
+			console.log('status_message : ', HTTPStatus[res.statusCode])
 		}
 	} catch(err) {
 		error_urls.push({
 			url,
 			status_message: err.message
 		})
-		console.log(err.message)
+		console.log('status_message : ', err.message)
 	}
 }
 
@@ -132,13 +142,12 @@ let runBot = () => {
 		let position = q_urls.findIndex(url => url.indexOf(currentHost) == -1)
 		let url = (q_urls.splice(position, 1))[0]
 		if(url != undefined){
-			resolve(url)	
-		} else {
-			resolve()
+			setCurrentHost(url)
+			resolve(url)
 		}
 	}).then((url) => {
 		return new Promise((resolve, reject) => {
-			robotto.canCrawl('Chutiphon.k', url, function(err, isAllowed) {
+			robotto.canCrawl(userAgent, url, function(err, isAllowed) {
 			    if (err || isAllowed) {
 					resolve({
 						canCrawl: true,
@@ -155,7 +164,7 @@ let runBot = () => {
 		})
 	}).then((value) => {
 		if(value.canCrawl){
-			console.log(`[${visited_urls.length + 1}] : ${value.url}`)
+			console.log(`[${countVisited + 1}] : ${value.url}`)
 			requestFunc(value.url)
 		}
 	}).then(checkBot)
@@ -163,4 +172,4 @@ let runBot = () => {
 
 q_urls.push(STARTER_URL)
 
-looping = setInterval(runBot, 1000)
+looping = setInterval(runBot, 2000)

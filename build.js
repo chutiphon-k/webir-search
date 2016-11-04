@@ -2,7 +2,7 @@ var elasticlunr = require('elasticlunr')
 let cheerio = require('cheerio')
 let fs = require('fs')
 let path = require('path')
-var base64url = require('base64-url');
+// var base64url = require('base64-url');
 
 
 console.log('>>> Start Create Index <<<')
@@ -19,10 +19,11 @@ try {
   let files = fs.readdirSync('./contents')
   files.map((file, index) => {
       let data = fs.readFileSync('./contents/' + file,'utf8')
+      let getUrl = JSON.parse(fs.readFileSync('./success.json','utf8'))
       let $ = cheerio.load(data,{ normalizeWhitespace: true })
       idx.addDoc({
           id: index+1,
-          url: base64url.decode(file),
+          url: getUrl[file],
           title: $('title').text().trim(),
           content: $('body').text().trim()
       })

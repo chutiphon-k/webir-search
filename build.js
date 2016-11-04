@@ -23,7 +23,7 @@ try {
       let $ = cheerio.load(data,{ normalizeWhitespace: true })
       idx.addDoc({
           id: index+1,
-          url: getUrl[file],
+          url: getUrl[file-1],
           title: $('title').text().trim(),
           content: $('body').text().trim()
       })

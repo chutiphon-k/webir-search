@@ -58,8 +58,6 @@ let filterUrl = (url) => {
 		return false
 	} else if(regx.test(url)) {
 		return false
-	} else if(error_urls.filter((error_url) => (error_url.url.indexOf(urlmodule.parse(url).host) >= 0)).length >= 3){
-		return false
 	} else{
 		return true		
 	}
@@ -116,10 +114,12 @@ let requestFunc = (url) => {
 			if(url == 'http://www.eng.ku.ac.th/?page_id=9690'){
 				getCourse(res.getBody('utf8'))				
 			}
-			if(q_urls.length < 50){
-				let urls = getUrl(res.body)
-				pushUrl(urls.splice(0,50 - q_urls.length))
-			}
+			let urls = getUrl(res.body)
+			pushUrl(urls)
+			// if(q_urls.length < 100){
+				// let urls = getUrl(res.body)
+				// pushUrl(urls.splice(0,100 - q_urls.length))
+			// }
 		} else{
 			error_urls.push({
 				url,
@@ -172,4 +172,4 @@ let runBot = () => {
 
 q_urls.push(STARTER_URL)
 
-looping = setInterval(runBot, 2000)
+looping = setInterval(runBot, 1000)

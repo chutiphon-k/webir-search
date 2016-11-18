@@ -16,10 +16,10 @@ var idx = elasticlunr(function () {
 idx.pipeline.remove(elasticlunr.trimmer)
 
 try {
-  let files = fs.readdirSync('./contents')
+  let files = fs.readdirSync(path.join(__dirname, 'contents'))
   files.map((file, index) => {
-      let data = fs.readFileSync('./contents/' + file,'utf8')
-      let getUrl = JSON.parse(fs.readFileSync('./success.json','utf8'))
+      let data = fs.readFileSync(path.join(__dirname, 'contents', file), 'utf8')
+      let getUrl = JSON.parse(fs.readFileSync(path.join(__dirname, 'output', 'success.json'), 'utf8'))
       let $ = cheerio.load(data,{ normalizeWhitespace: true })
       idx.addDoc({
           id: index+1,
@@ -34,7 +34,7 @@ try {
 
 
 try {
-  fs.writeFileSync('./indexFile.json', JSON.stringify(idx,null,2), 'utf8')
+  fs.writeFileSync(path.join(__dirname, 'output', 'indexFile.json'), JSON.stringify(idx,null,2), 'utf8')
   console.log('>>> Create Index Done <<<')
 }
 catch(err) {

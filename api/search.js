@@ -1,11 +1,12 @@
 const elasticlunr = require('elasticlunr')
 const readline = require('readline');
 const fs = require('fs')
+const path = require('path')
 
 let data, idx
 
 try {
-  data = fs.readFileSync('./indexFile.json','utf8')
+  data = fs.readFileSync(path.join(__dirname, 'output', 'indexFile.json'),'utf8')
   idx = elasticlunr.Index.load(JSON.parse(data))
 } catch(err) {
   console.log('Load Index Error!!!')

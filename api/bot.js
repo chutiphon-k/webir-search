@@ -3,12 +3,13 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 const fs = require('fs')
 const request = require('sync-request')
 const cheerio = require('cheerio')
-const urlmodule = require("url");
+const urlmodule = require("url")
 // const base64url = require('base64-url');
-const HTTPStatus = require('http-status');
-const robotto = require('robotto');
+const HTTPStatus = require('http-status')
+const robotto = require('robotto')
+const path = require('path')
 
-const LIMIT = 1000, TIMEOUT = 10000, STARTER_URL = 'https://mike.cpe.ku.ac.th/seed/'
+const LIMIT = 10, TIMEOUT = 10000, STARTER_URL = 'https://mike.cpe.ku.ac.th/seed/'
 let q_urls = [], visited_urls = [], success_urls = [], error_urls = [], countVisited = 0, countSuccess = 0
 let looping, currentHost = '', currentUrl = '', src_dest = '', courses = [], userAgent = 'Chutiphon.k'
 
@@ -24,10 +25,10 @@ let checkBot = () => {
 		console.log('>>> Stop Crawler <<<')
 		clearInterval(looping)
 		// let sumCourses = courses.reduce((sum, course) => sum + course + '\n','')
-		fs.writeFileSync('./courses.json', JSON.stringify(courses, null, 2), 'utf8')
-		fs.writeFileSync('./src_dest', src_dest, 'utf8')
-		fs.writeFileSync('./error.json', JSON.stringify(error_urls, null, 2), 'utf8')
-		fs.writeFileSync('./success.json', JSON.stringify(success_urls, null, 2), 'utf8')
+		fs.writeFileSync(path.join(__dirname, 'output', 'courses.json'), JSON.stringify(courses, null, 2), 'utf8')
+		fs.writeFileSync(path.join(__dirname, 'output', 'src_dest'), src_dest, 'utf8')
+		fs.writeFileSync(path.join(__dirname, 'output', 'error.json'), JSON.stringify(error_urls, null, 2), 'utf8')
+		fs.writeFileSync(path.join(__dirname, 'output', 'success.json'), JSON.stringify(success_urls, null, 2), 'utf8')
 		console.log('Error Website : ', error_urls.length)
 		console.log('Courses : ')
 		console.log(courses)
@@ -75,7 +76,7 @@ let pushUrl = (urls) => {
 
 
 let saveContent = (url, content) => {
-	fs.writeFileSync('./contents/' + countSuccess, content, 'utf8')
+	fs.writeFileSync(path.join(__dirname, 'contents', countSuccess.toString()), content, 'utf8')
 }
 
 let setCurrentHost = (url) => {

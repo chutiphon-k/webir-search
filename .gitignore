@@ -3,5 +3,5 @@ npm-debug.log
 .DS_Store
 
 api/contents
-api/output
+api/outputs
 api/contents/.DS_Store

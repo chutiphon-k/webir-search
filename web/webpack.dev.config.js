@@ -37,8 +37,7 @@ module.exports = {
 				loader: 'babel?cacheDirectory!eslint',
 				include: path.resolve(__dirname, 'src')
 			},{
-				test: /\.css$/,
-				include: path.resolve(__dirname, 'src'),
+				test: /\.css/,
 				loaders: [
 					'style', 
 					{
@@ -46,7 +45,7 @@ module.exports = {
 						query: {
 							sourceMap: true,
 						    module: true,
-						    localIdentName: '[local]___[hash:base64:5]'
+						    localIdentName: '[local]'
 						}
 					},
 					'postcss'
@@ -74,9 +73,21 @@ module.exports = {
 					}
 				]
 			},{
-				test: /\.(png|jpg|gif|svg|ttf)$/,
+				test: /\.(png|jpg|gif)$/,
 				include: path.resolve(__dirname, 'src/assets'),
 				loader: 'url?limit=25000'
+			},{
+				test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, 
+				loader: 'url?limit=10000&mimetype=application/font-woff'
+			},{
+				test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+				loader: 'url?limit=10000&mimetype=application/octet-stream'
+			},{
+				test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, 
+				loader: 'file'
+			},{
+				test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, 
+				loader: 'url?limit=10000&mimetype=image/svg+xml'
 			}
 		]
 	},

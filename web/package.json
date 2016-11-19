@@ -21,8 +21,10 @@
   },
   "homepage": "https://github.com/chutiphon-k/webir-search#readme",
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "express": "^4.14.0",
     "react": "^15.4.0",
+    "react-bootstrap": "^0.30.6",
     "react-dom": "^15.4.0",
     "react-redux": "^4.4.6",
     "react-router": "^3.0.0",

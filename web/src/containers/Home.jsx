@@ -5,6 +5,8 @@ import {
 	CatImg,
 	DogImg
 } from 'assets/images'
+import { Button } from 'react-bootstrap';
+import styles from 'containers/Home.css'
 
 let x
 
@@ -38,8 +40,10 @@ export default class Home extends Component {
 		return(
 			<div>
 				<h1>Home</h1>
+				<h2 className={styles.ddd} >eieiaaa</h2>
 				<h1>{ this.state.counter }</h1>
 				<button onClick={() => this._updateCounter()}>Click</button>
+				<Button bsStyle="success">Success</Button>
 				<Link to={'/result/999'}><h2>next</h2></Link>
 				<img src={LogoImg} />
 				<img src={CatImg} />

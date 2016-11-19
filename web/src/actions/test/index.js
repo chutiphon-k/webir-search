@@ -1,0 +1,1 @@
+export { aaa } from 'actions/test/a'

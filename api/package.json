@@ -4,6 +4,7 @@
   "license": "MIT",
   "author": "Chutiphon.k <chutiphon.k@ku.th>",
   "repository": "https://chutiphon-k@github.com/chutiphon-k/webir-search.git",
+  "homepage": "https://github.com/chutiphon-k/webir-search#readme",
   "scripts": {
     "build": "node ./src/build",
     "search": "node ./src/search",

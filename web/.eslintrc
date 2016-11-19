@@ -1,0 +1,10 @@
+{
+	"parser": "babel-eslint",
+	"plugins": [
+		"react"
+	],
+	"rules": {
+		"no-var": "error",
+		"react/jsx-space-before-closing": "error"
+	}
+}

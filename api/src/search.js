@@ -6,7 +6,7 @@ const path = require('path')
 let data, idx
 
 try {
-  data = fs.readFileSync(path.join(__dirname, 'outputs', 'indexFile.json'),'utf8')
+  data = fs.readFileSync(path.join(__dirname, 'outputs', 'indexFile.json'), 'utf8')
   idx = elasticlunr.Index.load(JSON.parse(data))
 } catch(err) {
   console.log('Load Index Error!!!')

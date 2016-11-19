@@ -1,7 +1,9 @@
-node_modules
-npm-debug.log
-.DS_Store
+*/node_modules
+*/npm-debug.log
+*/.DS_Store
 
-api/contents
-api/outputs
-api/contents/.DS_Store
+api/src/contents
+api/src/outputs
+
+web/build
+web/index.html

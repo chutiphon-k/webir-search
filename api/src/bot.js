@@ -9,7 +9,7 @@ const HTTPStatus = require('http-status')
 const robotto = require('robotto')
 const path = require('path')
 
-const LIMIT = 10, TIMEOUT = 10000, STARTER_URL = 'https://mike.cpe.ku.ac.th/seed/'
+const LIMIT = 10, TIMEOUT = 10000, STARTER_URL = 'http://www.human.ku.ac.th/newdesign/index.php/en/'
 let q_urls = [], visited_urls = [], success_urls = [], error_urls = [], countVisited = 0, countSuccess = 0
 let looping, currentHost = '', currentUrl = '', src_dest = '', courses = [], userAgent = 'Chutiphon.k'
 

@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import test from 'reducers/test'
-import { routerReducer } from 'react-router-redux'
+import { routerReducer  } from 'react-router-redux'
+import { reducer as formReducer } from 'redux-form'
+import search from 'reducers/search'
 
 export default combineReducers({
 	routing: routerReducer,
-	test
+	form: formReducer,
+	search
 })

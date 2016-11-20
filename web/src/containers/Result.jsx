@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import actions from 'actions'
-import { connect } from 'react-redux'
+import styles from 'containers/Result.css'
 
-const { aaa } = actions
+const { getSearch } = actions
 
 class Result extends Component {
 
@@ -21,8 +22,9 @@ class Result extends Component {
 			<div>
 				<h1>Result</h1>
 				<h1>{this.props.params.q}</h1>
+				<Link to={'/'}><h2>Home</h2></Link>
 				<pre>
-					{JSON.stringify(this.props.test, null, 2)}
+					{JSON.stringify(this.props.search, null, 2)}
 				</pre>
 			</div>
 		)
@@ -30,11 +32,11 @@ class Result extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	test: state.test
+	test: state.search
 })
 
 const mapDispatchToProps = {
-	aaa: () => aaa()
+	aaa: () => getSearch()
 }
 
 export default connect(

@@ -5,10 +5,8 @@
   "main": "index.html",
   "scripts": {
     "dev": "NODE_ENV='development' webpack-dashboard -- webpack-dev-server --config ./webpack.dev.config.js",
-    "dev-webpack": "webpack --progress --config ./webpack.dev.config.js",
     "deploy": "NODE_ENV=production webpack -p --config ./webpack.prod.config.js",
-    "deploy:prod": "NODE_ENV=production webpack -p --config ./webpack.prod.config.js && node ./server.js",
-    "deploy:analyse": "NODE_ENV=production webpack -p --config ./webpack.prod.config.js --profile --json > stats"
+    "deploy:prod": "NODE_ENV=production webpack -p --config ./webpack.prod.config.js && node ./server.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +29,7 @@
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
     "redux-api-middleware": "^1.0.2",
+    "redux-form": "^6.2.0",
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {

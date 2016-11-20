@@ -1,54 +1,61 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import { 
-	LogoImg,
-	CatImg,
-	DogImg
-} from 'assets/images'
-import { Button } from 'react-bootstrap';
+import { Field, reduxForm, formValueSelector } from 'redux-form'
+import actions from 'actions'
 import styles from 'containers/Home.css'
+import { imgPony1 } from 'assets/images'
 
-let x
+const FIELDS = ['query', 'isRanking']
+const { getSearch } = actions
 
-export default class Home extends Component {
+class Home extends Component {
 
 	constructor(props){
 		super(props)
-		this.state = {
-			counter: 0
-		}
-	}
-
-	_updateCounter(){
-		this.setState({ counter: this.state.counter + 1})
-	}
-
-	componentWillMount(){
-		console.log(process.env)
-		console.log(`${__VERSION__},aaaa`)
-	}
-
-	componentDidMount(){
-		x = setInterval(() => this._updateCounter(), 500)
-	}
-
-	componentWillUnmount(){
-		clearInterval(x)
+		this.state = {}
 	}
 
 	render(){
-		return(
+		const { fields, handleSubmit } = this.props
+		return (
 			<div>
-				<h1>Home</h1>
-				<h2 className={styles.ddd} >eieiaaa</h2>
-				<h1>{ this.state.counter }</h1>
-				<button onClick={() => this._updateCounter()}>Click</button>
-				<Button bsStyle="success">Success</Button>
-				<Link to={'/result/999'}><h2>next</h2></Link>
-				<img src={LogoImg} />
-				<img src={CatImg} />
-				<img src={DogImg} />
+				<h1>ม้าโพนี่มหัสจรรย์<img src={imgPony1} className={styles.imgLogo} /></h1>
+			    <form onSubmit={handleSubmit} className='form' action='javascript:void(0)'>
+			        <div>
+			          <label>First Name</label>
+			          <Field name="firstName" component="input" type="text" />
+			        </div>
+					<button
+				        type='submit'
+				        className='button'>
+			        Submit
+			      </button>
+			    </form>
+				<Link to={`/result/100`}><h2>Result</h2></Link>
 			</div>
 		)
 	}
 }
+
+Home = reduxForm({
+    form: 'home',
+    initialValues: {firstName: 'eiei'},
+})(Home)
+
+const selector = formValueSelector('home')
+
+const mapStateToProps = (state) => ({
+	search: state.search
+})
+
+const mapDispatchToProps = {
+	onSubmit: getSearch
+}
+
+Home = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)
+
+export default Home

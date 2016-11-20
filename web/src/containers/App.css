@@ -1,26 +1,4 @@
-.abc {
-  color: #F77D99;
-  font-size: 50px;
-}
-
-img {
-	height: 100px;
-	width: auto;
-}
-
-h1 {
-  animation: text-animation 2s infinite;
-}
-
-@keyframes text-animation {
-  0% {
-    color: yellow;
-  }
-  100% {
-    color: red;
-  }
-}
-
-.cde {
-  display: flex;
+.imgLogo {
+	max-height: 70px;
+  max-width: 150px;
 }

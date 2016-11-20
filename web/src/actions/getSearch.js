@@ -1,13 +1,13 @@
 import { CALL_API } from 'redux-api-middleware'
 
-export const aaa = () => ({
+export default (values) => ({
   [CALL_API]: {
-    endpoint: `https://jsonplaceholder.typicode.com/users`,
+    endpoint: `http://localhost:9090/api/search`,
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     method: 'GET',
-    types: ['LOAD_PAGES_REQUEST', 'LOAD_PAGES_SUCCESS', 'LOAD_PAGES_FAILURE']
+    types: ['LOAD_SEARCH_REQUEST', 'LOAD_SEARCH_SUCCESS', 'LOAD_SEARCH_FAILURE']
   }
 })

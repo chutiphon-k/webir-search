@@ -1,5 +1,5 @@
-import * as test from 'actions/test'
+import getSearch from 'actions/getSearch'
 
 export default {
-	...test
+	getSearch
 }

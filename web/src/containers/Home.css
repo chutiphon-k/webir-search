@@ -1,4 +1,47 @@
-.imgLogo {
-	max-height: 70px;
+@import url('https://fonts.googleapis.com/css?family=Pridi');
+
+.logoDev {
+	max-height: 60px;
+	max-width: 60px;
+}
+
+body, html {
+    background-color: #ECECEC;
+ 	text-align: center;
+    font-family: 'Pridi', serif;
+    margin: 2em;
+}
+
+input[type=text] {
+    border: 3px solid #8E44AD;
+	border-radius:10px;
+	margin: 1em;
+	height: 2.5em;
+	width: 30em;
+	padding-right: 1em;
+	padding-left: 1em;
+	font-size: 1.2em;
+}
+
+button {
+	border-radius:10px;
+	color: #000;
+	padding: 0.5em 1em;
+	background-color: #c7b0d1;
+	font-size: 1.3em;
+	border: none;
+}
+
+button:hover {
+	background-color: #b48bc5;
+}
+
+.logo {
+	max-height: 150px;
 	max-width: 150px;
+	margin: 1em;
+}
+
+h1 {
+	font-size: 3em;
 }

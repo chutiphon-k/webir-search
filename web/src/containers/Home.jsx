@@ -20,16 +20,18 @@ class Home extends Component {
 		const { fields, handleSubmit } = this.props
 		return (
 			<div>
-				<h1>ม้าโพนี่มหัศจรรย์<img src={imgPony1} className={styles.imgLogo} /></h1>
+				<h1>Miracle of Pony Search</h1>
+				<img src={imgPony1} className={styles.logo} />
 			    <form onSubmit={handleSubmit} className='form' action='javascript:void(0)'>
 			        <div>
 						<Field name="search" component="input" type="text" />
 						{' '}
+						<br></br>
 						<button
 					    	type='submit'
 					        className='button'>
 					        Search
-				      </button>
+				    	</button>
 			        </div>
 			    </form>
 			</div>

@@ -19,22 +19,19 @@ class App extends Component {
 
 	render(){
 		return (
-			<div>
-				<div>
-					<h1>Headers</h1>
-				</div>
+			<div className={styles.container} >
 				<hr />
 				{this.props.children}
 				<hr />
 				<div>
 					<div>Development By</div>
 					<div>
-						<img src={logoReact} className={styles.imgLogo} />
-						<img src={logoRedux} className={styles.imgLogo} />
-						<img src={logoReactBoot} className={styles.imgLogo} />
-						<img src={logoWebpack} className={styles.imgLogo} />
-						<img src={logoBabel} className={styles.imgLogo} />
-						<img src={logoExpress} className={styles.imgLogo} />
+						<img src={logoReact} className={styles.logoDev} />
+						<img src={logoRedux} className={styles.logoDev} />
+						<img src={logoReactBoot} className={styles.logoDev} />
+						<img src={logoWebpack} className={styles.logoDev} />
+						<img src={logoBabel} className={styles.logoDev} />
+						<img src={logoExpress} className={styles.logoDev} />
 					</div>
 				</div>
 			</div>

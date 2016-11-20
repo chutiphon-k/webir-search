@@ -1,5 +1,8 @@
 # WebIR-Search
 
+![Home Screen](https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-home-v1.png)
+![Result Screen](https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-result-v1.png)
+
 ## Packages (main)
 - Cheerio
 - Elasticlunr
@@ -24,6 +27,7 @@ npm run build # For create index file
 npm run search # For search query
 npm run dev # For run dev api server
 npm run deploy:prod # For run prodtions api server
+open url http://localhost:9090/api/search
 ```
 
 ## Using Web
@@ -31,6 +35,7 @@ npm run deploy:prod # For run prodtions api server
 git clone https://github.com/chutiphon-k/webir-search.git
 cd web
 npm install
-npm run dev # For run dev
-npm run deploy:prod # For run prodtions
+npm run dev # For run web dev
+npm run deploy:prod # For run web prodtions
+open url http://localhost:8080
 ```

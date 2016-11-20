@@ -1,7 +1,9 @@
 # WebIR-Search
 
-![Home Screen](https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-home-v1.png)
-![Result Screen](https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-result-v1.png)
+<p align="center">
+  <img src="https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-home-v1.png">
+  <img src="https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-result-v1.png">
+</p>
 
 ## Packages (main)
 - Cheerio

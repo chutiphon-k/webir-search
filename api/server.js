@@ -15,17 +15,17 @@ app.use((req, res, next) => {
 app.get('/api/search', (req, res) => {
 	let results = [
 		{
-			title: 'title#1',
-			snippet: 'snippet#1',
-			url: 'url#1'
+			title: 'Teayeon',
+			snippet: 'SNSD',
+			url: 'http://f.ptcdn.info/983/046/000/og1ozwnfhXYFEC3zb19-o.jpg'
 		},{
-			title: 'title#2',
-			snippet: 'snippet#2',
-			url: 'url#2'
+			title: 'Krystal',
+			snippet: 'f(x)',
+			url: 'http://i.imgur.com/60dJN98.jpg?1'
 		},{
-			title: 'title#3',
-			snippet: 'snippet#3',
-			url: 'url#3'
+			title: 'Google',
+			snippet: 'Google Googlee Googleee',
+			url: 'https://www.google.co.th'
 		}
 	]
 	res.json(results)

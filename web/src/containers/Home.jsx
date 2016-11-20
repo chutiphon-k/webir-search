@@ -20,33 +20,41 @@ class Home extends Component {
 		const { fields, handleSubmit } = this.props
 		return (
 			<div>
-				<h1>ม้าโพนี่มหัสจรรย์<img src={imgPony1} className={styles.imgLogo} /></h1>
+				<h1>ม้าโพนี่มหัศจรรย์<img src={imgPony1} className={styles.imgLogo} /></h1>
 			    <form onSubmit={handleSubmit} className='form' action='javascript:void(0)'>
 			        <div>
-			          <label>First Name</label>
-			          <Field name="firstName" component="input" type="text" />
+						<Field name="search" component="input" type="text" />
+						{' '}
+						<button
+					    	type='submit'
+					        className='button'>
+					        Search
+				      </button>
 			        </div>
-					<button
-				        type='submit'
-				        className='button'>
-			        Submit
-			      </button>
 			    </form>
-				<Link to={`/result/100`}><h2>Result</h2></Link>
 			</div>
 		)
 	}
 }
 
+const validate = values => {
+	const errors = {}
+	if (!values.search || values.search == '') {
+    	errors.search = 'Required'
+	}
+	return errors
+}
+
 Home = reduxForm({
-    form: 'home',
-    initialValues: {firstName: 'eiei'},
+	form: 'home',
+	validate
 })(Home)
 
 const selector = formValueSelector('home')
 
 const mapStateToProps = (state) => ({
-	search: state.search
+	searchText: selector(state, 'search'),
+	data: state.search.get.data
 })
 
 const mapDispatchToProps = {
@@ -54,8 +62,8 @@ const mapDispatchToProps = {
 }
 
 Home = connect(
-  mapStateToProps,
-  mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(Home)
 
 export default Home

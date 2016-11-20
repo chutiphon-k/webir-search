@@ -21,7 +21,7 @@ export default (store, history) => (
 		            	cb(null, component.default || component)
 			        })		
 			}} />
-			<Route path='result/:q' getComponent = { (location, cb) => {
+			<Route path='result' getComponent = { (location, cb) => {
 		        System.import('./containers/Result')
 		        	.then((component) => {
 		            	cb(null, component.default || component)

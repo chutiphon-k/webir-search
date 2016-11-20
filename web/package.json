@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "dev": "NODE_ENV='development' webpack-dashboard -- webpack-dev-server --config ./webpack.dev.config.js",
-    "deploy": "NODE_ENV=production webpack -p --config ./webpack.prod.config.js",
-    "deploy:prod": "NODE_ENV=production webpack -p --config ./webpack.prod.config.js && node ./server.js"
+    "dev": "webpack-dashboard -- webpack-dev-server --config ./webpack.dev.config.js",
+    "deploy": "webpack -p --config ./webpack.prod.config.js",
+    "deploy:prod": "webpack -p --config ./webpack.prod.config.js && node ./server.js"
   },
   "repository": {
     "type": "git",

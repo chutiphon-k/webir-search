@@ -2,9 +2,8 @@
 
 ## Screenshot
 <p align="center">
-	Home
 	<img src="https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-home-v2.png">
-	Result
+
 	<img src="https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-result-v1.png">
 </p>
 

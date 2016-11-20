@@ -1,5 +1,8 @@
 # React-Redux-Starter
 
+![Home Screen](https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-home-v1.png)
+![Result Screen](https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-result-v1.png)
+
 ## Motivation
 This project create starter for react with redux
 

@@ -32,7 +32,7 @@ class Result extends Component {
 								<section key={index} className={styles.sectionResult}>
 									<a href={data.url}>{data.title}</a>
 									<div>{data.url}</div>
-									<div>{data.snippet}</div>
+									<div dangerouslySetInnerHTML={{__html: data.snippet}}></div>
 								</section>
 							)
 						})

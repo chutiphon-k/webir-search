@@ -45,10 +45,10 @@ let getSnippet = (query, content) => {
 
   let snippet = content.substring(indexFirst, indexLast)
   indexQuery = (snippet.toLowerCase()).indexOf(query)
-  while(indexQuery != -1){
-    snippet = snippet.substring(0,indexQuery) + '<b>' + snippet.substring(indexQuery, indexQuery + queryLength) + '</b>' + snippet.substring(indexQuery + queryLength)
-    indexQuery = (snippet.toLowerCase()).indexOf(query, indexQuery + queryLength)
-  }
+  // while(indexQuery != -1){
+    snippet = snippet.substring(0,indexQuery) + '<mark>' + snippet.substring(indexQuery, indexQuery + queryLength) + '</mark>' + snippet.substring(indexQuery + queryLength)
+    // indexQuery = (snippet.toLowerCase()).indexOf(query, indexQuery + queryLength)
+  // }
   return snippet
 }
 

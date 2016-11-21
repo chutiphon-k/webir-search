@@ -13,7 +13,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
 	cache: true,
 	entry: {
-		vendor: ['react', 'react-router', 'react-redux', 'redux-api-middleware', 'react-router-redux'],
+		vendor: [
+			'react', 
+			'react-router', 
+			'react-redux', 
+			'redux-api-middleware', 
+			'react-router-redux', 
+			'react-bootstrap'
+		],
 		bundle: path.resolve(__dirname, 'src/index.js')
 	},
 	output: {
@@ -41,7 +48,7 @@ module.exports = {
 			},{
 				test: /\.css$/,
 				loader: ExtractTextPlugin.extract({
-					notExtractLoader: "style-loader",
+					notExtractLoader: "style",
 					loader: [
 						{
 							loader: 'css',
@@ -59,7 +66,7 @@ module.exports = {
 				test: /\.scss$/,
 				include: path.resolve(__dirname, 'src'),
 				loader: ExtractTextPlugin.extract({
-					notExtractLoader: "style-loader",
+					notExtractLoader: "style",
 					loader: [
 						{
 							loader: 'css',
@@ -117,7 +124,8 @@ module.exports = {
 
 	    }),
 	    new CleanWebpackPlugin([
-			path.resolve(__dirname, 'build')
+			path.resolve(__dirname, 'build'),
+			path.resolve(__dirname, 'index.html')
 	    ]),
 	    new webpack.optimize.OccurrenceOrderPlugin(),
 	    new webpack.optimize.UglifyJsPlugin({

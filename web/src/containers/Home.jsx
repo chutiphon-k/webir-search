@@ -6,7 +6,6 @@ import actions from 'actions'
 import styles from 'containers/Home.css'
 import { imgPony1 } from 'assets/images'
 
-const FIELDS = ['query', 'isRanking']
 const { getSearch } = actions
 
 class Home extends Component {

@@ -3,7 +3,7 @@ import { push } from 'react-router-redux'
 
 export default (values) => dispatch => dispatch({
 	[CALL_API]: {
-		endpoint: `http://localhost:9090/api/search`,
+		endpoint: `http://localhost:9090/api/search2?q=${values.search}`,
 		headers: {
 		  'Accept': 'application/json',
 		  'Content-Type': 'application/json'

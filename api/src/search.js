@@ -1,3 +1,5 @@
+'use strict';
+
 const elasticlunr = require('elasticlunr')
 const readline = require('readline');
 const fs = require('fs')
@@ -12,10 +14,10 @@ try {
   console.log('Load Index Error!!!')
 }
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+// const rl = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout
+// });
 
 let getSnippet = (query, content) => {
   let indexQuery = (content.toLowerCase()).indexOf(query)
@@ -50,16 +52,60 @@ let getSnippet = (query, content) => {
   return snippet
 }
 
-rl.question('Input query : ', (query) => {
+exports.getSearch = (query) => {
   console.log('>>> Start Search <<<')
-  let ans = idx.search(query).slice(0,10)
+  let ans = idx.search(query,  {
+      fields: {
+          title: {boost: 1},
+          content: {boost: 1}
+      },
+      bool: "OR",
+      expand: true
+  }).slice(0,10)
+
   let ansMaps = ans.map((value) => {
     let ansMap = idx.documentStore.getDoc(value.ref)
       ansMap.snippet = getSnippet(query.toLowerCase(), ansMap.content)
-      delete ansMap.content
+      // delete ansMap.content
       return ansMap
   })
-  console.log(ansMaps)
   console.log('>>> Search Done <<<')
-  rl.close();
-});
+  return ansMaps.map((ansMap) => {
+    return { 
+        id: ansMap.id,
+        url: ansMap.url,
+        title: ansMap.title,
+        snippet: ansMap.snippet
+    }
+  })
+}
+
+
+// rl.question('Input query : ', (query) => {
+//   console.log('>>> Start Search <<<')
+//   let ans = idx.search(query).slice(0,10)
+//   let ansMaps = ans.map((value) => {
+//     let ansMap = idx.documentStore.getDoc(value.ref)
+//       ansMap.snippet = getSnippet(query.toLowerCase(), ansMap.content)
+//       delete ansMap.content
+//       return ansMap
+//   })
+//   console.log(ansMaps)
+//   console.log('>>> Search Done <<<')
+//   rl.close()
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

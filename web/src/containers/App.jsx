@@ -24,7 +24,7 @@ class App extends Component {
 				{this.props.children}
 				<hr />
 				<div>
-					<div>Development By</div>
+					<div>Development By</div><br />
 					<div>
 						<img src={logoReact} className={styles.logoDev} />
 						<img src={logoRedux} className={styles.logoDev} />

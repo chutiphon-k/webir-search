@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const search = require('./src/search')
 const config = require('./config')
 
 const app = express()
@@ -29,6 +30,10 @@ app.get('/api/search', (req, res) => {
 		}
 	]
 	res.json(results)
+})
+
+app.get('/api/search2', (req, res) => {
+	res.send(search.getSearch(req.query.q))
 })
 
 app.get('*', (req, res) => {

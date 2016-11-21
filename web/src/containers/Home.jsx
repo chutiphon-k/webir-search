@@ -25,7 +25,7 @@ class Home extends Component {
 			        <div>
 						<Field name="search" component="input" type="text" />
 						{' '}
-						<br></br>
+						<br />
 						<button
 					    	type='submit'
 					        className='button'>

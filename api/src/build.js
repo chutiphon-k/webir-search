@@ -20,7 +20,9 @@ try {
   files.map((file, index) => {
       let data = fs.readFileSync(path.join(__dirname, 'contents', file), 'utf8')
       let getUrl = JSON.parse(fs.readFileSync(path.join(__dirname, 'outputs', 'success.json'), 'utf8'))
-      let $ = cheerio.load(data,{ normalizeWhitespace: true })
+      let $ = cheerio.load(data,{ normalizeWhitespace: true, ignoreWhitespace: true })
+      $('script').remove()
+      $('style').remove()
       idx.addDoc({
           id: index+1,
           url: getUrl[file-1],

@@ -12,6 +12,7 @@ module.exports = {
 	devtool: 'eval',
 	cache: true,
 	entry: [
+		'react-hot-loader/patch',
 		'webpack-dev-server/client?http://localhost:' + config.port,
 		'webpack/hot/only-dev-server',
 		path.resolve(__dirname, 'src/index.js')

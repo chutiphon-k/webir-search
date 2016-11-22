@@ -30,7 +30,7 @@ let getSnippet = (query, content) => {
   } else {
     let indexSpace = content.lastIndexOf(' ',indexFirst)
     if(indexSpace != -1){
-      indexFirst = indexSpace
+      indexFirst = indexSpace + 1
     }
   }
 
@@ -45,10 +45,10 @@ let getSnippet = (query, content) => {
 
   let snippet = content.substring(indexFirst, indexLast)
   indexQuery = (snippet.toLowerCase()).indexOf(query)
-  // while(indexQuery != -1){
+  while(indexQuery != -1){
     snippet = snippet.substring(0,indexQuery) + '<mark>' + snippet.substring(indexQuery, indexQuery + queryLength) + '</mark>' + snippet.substring(indexQuery + queryLength)
-    // indexQuery = (snippet.toLowerCase()).indexOf(query, indexQuery + queryLength)
-  // }
+    indexQuery = (snippet.toLowerCase()).indexOf(query, indexQuery + queryLength + '<mark>'.length)
+  }
   return snippet
 }
 

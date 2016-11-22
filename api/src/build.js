@@ -36,7 +36,7 @@ try {
 
 
 try {
-  fs.writeFileSync(path.join(__dirname, 'outputs', 'indexFile.json'), JSON.stringify(idx,null,2), 'utf8')
+  fs.writeFileSync(path.join(__dirname, 'outputs', 'indexFile.json'), JSON.stringify(idx), 'utf8')
   console.log('>>> Create Index Done <<<')
 }
 catch(err) {

@@ -19,10 +19,13 @@ module.exports = {
 			'react-redux', 
 			'redux-api-middleware', 
 			'react-router-redux', 
+			'bootstrap/dist/css/bootstrap.css',
 			'react-bootstrap',
 			'lodash'
 		],
-		bundle: path.resolve(__dirname, 'src/index.js')
+		bundle: [
+			path.resolve(__dirname, 'src/index.js')
+		]
 	},
 	output: {
 		path: path.resolve(__dirname, 'build'),

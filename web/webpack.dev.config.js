@@ -7,11 +7,14 @@ const autoprefixer = require('autoprefixer')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = require('./config')
+// import 'bootstrap/dist/css/bootstrap.css'
+// const bootstrap = require('bootstrap/dist/css/bootstrap.css')
 
 module.exports = {
 	devtool: 'eval',
 	cache: true,
 	entry: [
+		'bootstrap/dist/css/bootstrap.css',
 		'react-hot-loader/patch',
 		'webpack-dev-server/client?http://localhost:' + config.port,
 		'webpack/hot/only-dev-server',

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import { push, replace } from 'react-router-redux'
+import { push } from 'react-router-redux'
 import { Pagination } from 'react-bootstrap'
 import actions from 'actions'
 import styles from 'containers/Result.css'
@@ -42,17 +42,17 @@ class Result extends Component {
 						})
 					}
 				</div>
-		      <Pagination
-		        prev
-		        next
-		        first
-		        last
-		        ellipsis
-		        boundaryLinks
-		        items={this.props.pagination.pageCount}
-		        maxButtons={5}
-		        activePage={this.props.pagination.pageCorrent}
-		        onSelect={this.handleSelect.bind(this)} />
+				<Pagination
+					prev
+					next
+					first
+					last
+					ellipsis
+					boundaryLinks
+					items={this.props.pagination.pageCount}
+					maxButtons={5}
+					activePage={this.props.pagination.pageCorrent}
+					onSelect={this.handleSelect.bind(this)} />
 			</div>
 		)
 	}

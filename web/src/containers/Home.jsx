@@ -40,7 +40,7 @@ class Home extends Component {
 
 const validate = values => {
 	const errors = {}
-	if (!values.search || values.search == '') {
+	if (!values.search || values.search.trim() == '') {
     	errors.search = 'Required'
 	}
 	return errors

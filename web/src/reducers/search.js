@@ -3,7 +3,7 @@ const initialState = {
 		isFinish: false,
 		status: '',
 		data: [],
-		page: 0
+		pagination: {}
 	}
 }
 
@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
 					isFinish: true,
 					status: 'Success',
 					data: action.payload.data,
-					page: action.payload.page
+					pagination: action.payload.pagination
 				}
 			}
 		case 'LOAD_SEARCH_FAILURE':

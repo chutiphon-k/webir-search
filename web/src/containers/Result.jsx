@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import { push } from 'react-router-redux'
+import { push, replace } from 'react-router-redux'
+import { Pagination } from 'react-bootstrap'
 import actions from 'actions'
 import styles from 'containers/Result.css'
 
@@ -9,14 +10,17 @@ const { getSearch } = actions
 
 class Result extends Component {
 
-	constructor(props){
-		super(props)
-		this.state = {}
+	state = {}
+
+	handleSelect(page) {
+		let { search, sortType, limit } = this.props.location.query
+		this.props.getSearch({page, search, sortType, limit })
 	}
 
 	componentWillMount(){
 		if(!this.props.isFinish){
-			this.props.getSearch({search: this.props.location.query.q})
+			let { search, sortType, page, limit } = this.props.location.query
+			this.props.getSearch({ search, sortType, page, limit })
 		}
 	}
 
@@ -38,6 +42,17 @@ class Result extends Component {
 						})
 					}
 				</div>
+		      <Pagination
+		        prev
+		        next
+		        first
+		        last
+		        ellipsis
+		        boundaryLinks
+		        items={this.props.pagination.pageCount}
+		        maxButtons={5}
+		        activePage={this.props.pagination.pageCorrent}
+		        onSelect={this.handleSelect.bind(this)} />
 			</div>
 		)
 	}
@@ -45,6 +60,7 @@ class Result extends Component {
 
 const mapStateToProps = (state) => ({
 	data: state.search.get.data,
+	pagination: state.search.get.pagination,
 	isFinish: state.search.get.isFinish
 })
 

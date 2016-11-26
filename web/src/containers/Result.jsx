@@ -27,7 +27,7 @@ class Result extends Component {
 				<Link to={'/'}><h2>Back (เดี๋ยวเอาออกใส่ไว้งั้นแหละ)</h2></Link>
 				<div>
 					{
-						this.props.datas.map((data, index) => {
+						this.props.data.map((data, index) => {
 							return (
 								<section key={index} className={styles.sectionResult}>
 									<a href={data.url}>{data.title}</a>
@@ -44,7 +44,7 @@ class Result extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	datas: state.search.get.datas,
+	data: state.search.get.data,
 	isFinish: state.search.get.isFinish
 })
 

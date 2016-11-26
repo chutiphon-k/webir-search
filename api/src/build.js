@@ -22,22 +22,24 @@ try {
   files.map((file, index) => {
       let data = fs.readFileSync(path.join(__dirname, 'contents', file), 'utf8')
       let getUrl = JSON.parse(fs.readFileSync(path.join(__dirname, 'outputs', 'success.json'), 'utf8'))
-      let $ = cheerio.load(data,{ normalizeWhitespace: true, ignoreWhitespace: true })
-      $('script').remove()
-      $('style').remove()
-      let url = getUrl[file-1]
-      if(url != undefined){
+      try {
+        let $ = cheerio.load(data, { normalizeWhitespace: true, ignoreWhitespace: true })
+        $('script').remove()
+        $('style').remove()
+        let url = getUrl[file-1]
         console.log('[', index+1, '] : ', url)
-        idx.addDoc({
-            id: index+1,
-            url,
-            title: $('title').text().trim(),
-            content: $('body').text().trim()
-        })
-      }
+        if(url != undefined){
+          idx.addDoc({
+              id: index+1,
+              url,
+              title: $('title').text().trim(),
+              content: $('body').text().trim()
+          })
+        }
+      } catch(err) {}
   })
 } catch(err) {
-  console.log('Read File Ccontents Or Success Error!!!')
+  console.log('Read File Contents Or Success Error!!!')
 }
 
 
@@ -82,4 +84,3 @@ try {
 catch(err) {
   console.log('Write File Error!!!')
 }
-

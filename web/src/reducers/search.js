@@ -2,7 +2,8 @@ const initialState = {
 	get: {
 		isFinish: false,
 		status: '',
-		datas: []
+		data: [],
+		page: 0
 	}
 }
 
@@ -24,7 +25,8 @@ export default (state = initialState, action) => {
 					...initialState.get,
 					isFinish: true,
 					status: 'Success',
-					datas: action.payload
+					data: action.payload.data,
+					page: action.payload.page
 				}
 			}
 		case 'LOAD_SEARCH_FAILURE':

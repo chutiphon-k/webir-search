@@ -19,7 +19,8 @@ module.exports = {
 			'react-redux', 
 			'redux-api-middleware', 
 			'react-router-redux', 
-			'react-bootstrap'
+			'react-bootstrap',
+			'lodash'
 		],
 		bundle: path.resolve(__dirname, 'src/index.js')
 	},

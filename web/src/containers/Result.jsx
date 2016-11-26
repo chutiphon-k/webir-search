@@ -5,12 +5,26 @@ import { push } from 'react-router-redux'
 import { Pagination } from 'react-bootstrap'
 import actions from 'actions'
 import styles from 'containers/Result.css'
+import _ from 'lodash'
 
 const { getSearch } = actions
 
 class Result extends Component {
 
 	state = {}
+
+	setMarker(snippet){
+		let mark = _.wrap(_.escape, (func, text) => {
+			return '<mark>' + func(text) + '</mark>'
+		})
+		let search = this.props.location.query.search.toLowerCase()
+		let indexQuery = (snippet.toLowerCase()).indexOf(search)
+		while(indexQuery != -1){
+			snippet = snippet.substring(0,indexQuery) + mark(snippet.substring(indexQuery, indexQuery + search.length)) + snippet.substring(indexQuery + search.length)
+			indexQuery = (snippet.toLowerCase()).indexOf(search, indexQuery + search.length + '<mark>'.length*2 + 1)
+		}
+		return snippet
+	}
 
 	handleSelect(page) {
 		let { search, sortType, limit } = this.props.location.query
@@ -28,7 +42,7 @@ class Result extends Component {
 		return (
 			<div>
 				<h1>Result</h1>
-				<Link to={'/'}><h2>Back (เดี๋ยวเอาออกใส่ไว้งั้นแหละ)</h2></Link>
+				<Link to={'/'}><h2>Back</h2></Link>
 				<div>
 					{
 						this.props.data.map((data, index) => {
@@ -36,7 +50,7 @@ class Result extends Component {
 								<section key={index} className={styles.sectionResult}>
 									<a href={data.url}>{data.title}</a>
 									<div>{data.url}</div>
-									<div dangerouslySetInnerHTML={{__html: data.snippet}}></div>
+                                    <div dangerouslySetInnerHTML={{__html: this.setMarker(data.snippet)}} />
 								</section>
 							)
 						})

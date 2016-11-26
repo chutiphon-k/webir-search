@@ -14,11 +14,6 @@ try {
   console.log('Load Index Error!!!')
 }
 
-// const rl = readline.createInterface({
-//   input: process.stdin,
-//   output: process.stdout
-// });
-
 let getSnippet = (query, content) => {
   let indexQuery = (content.toLowerCase()).indexOf(query)
   let queryLength = query.length
@@ -61,39 +56,26 @@ exports.getSearch = (query) => {
       },
       bool: "OR",
       expand: true
-  }).slice(0,10)
+  })
 
   let ansMaps = ans.map((value) => {
     let ansMap = idx.documentStore.getDoc(value.ref)
-      ansMap.snippet = getSnippet(query.toLowerCase(), ansMap.content)
-      // delete ansMap.content
-      return ansMap
+    let snippet = getSnippet(query.toLowerCase(), ansMap.content)
+    Object.assign(ansMap, {snippet}, {similarity_score: value.score})
+    return ansMap
   })
   console.log('>>> Search Done <<<')
   return ansMaps.map((ansMap) => {
+    let { id, url, title, snippet, similarity_score } = ansMap
     return { 
-        id: ansMap.id,
-        url: ansMap.url,
-        title: ansMap.title,
-        snippet: ansMap.snippet
+        id,
+        url,
+        title,
+        snippet,
+        similarity_score
     }
   })
 }
-
-
-// rl.question('Input query : ', (query) => {
-//   console.log('>>> Start Search <<<')
-//   let ans = idx.search(query).slice(0,10)
-//   let ansMaps = ans.map((value) => {
-//     let ansMap = idx.documentStore.getDoc(value.ref)
-//       ansMap.snippet = getSnippet(query.toLowerCase(), ansMap.content)
-//       delete ansMap.content
-//       return ansMap
-//   })
-//   console.log(ansMaps)
-//   console.log('>>> Search Done <<<')
-//   rl.close()
-// })
 
 
 

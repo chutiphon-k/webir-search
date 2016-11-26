@@ -9,9 +9,10 @@ const HTTPStatus = require('http-status')
 const robotto = require('robotto')
 const path = require('path')
 
-const LIMIT = 1000, TIMEOUT = 10000, STARTER_URL = 'https://mike.cpe.ku.ac.th/seed/'
+const LIMIT = 10, TIMEOUT = 10000, STARTER_URL = 'http://www.human.ku.ac.th'
+// https://mike.cpe.ku.ac.th/seed/
 let q_urls = [], visited_urls = [], success_urls = [], error_urls = [], countVisited = 0, countSuccess = 0
-let looping, currentHost = '', currentUrl = '', src_dest = '', courses = [], userAgent = 'Chutiphon.k'
+let looping, currentHost = '', currentUrl = '', src_dest = {}, courses = [], userAgent = 'Chutiphon.k'
 
 let requestOption = {
 	timeout: TIMEOUT,
@@ -26,7 +27,7 @@ let checkBot = () => {
 		clearInterval(looping)
 		// let sumCourses = courses.reduce((sum, course) => sum + course + '\n','')
 		fs.writeFileSync(path.join(__dirname, 'outputs', 'courses.json'), JSON.stringify(courses, null, 2), 'utf8')
-		fs.writeFileSync(path.join(__dirname, 'outputs', 'src_dest'), src_dest, 'utf8')
+		fs.writeFileSync(path.join(__dirname, 'outputs', 'src_dest.json'), JSON.stringify(src_dest, null, 2), 'utf8')
 		fs.writeFileSync(path.join(__dirname, 'outputs', 'error.json'), JSON.stringify(error_urls, null, 2), 'utf8')
 		fs.writeFileSync(path.join(__dirname, 'outputs', 'success.json'), JSON.stringify(success_urls, null, 2), 'utf8')
 		console.log('Error Website : ', error_urls.length)
@@ -68,7 +69,6 @@ let filterUrl = (url) => {
 let pushUrl = (urls) => {
 	urls.map((url) => {
 		if(filterUrl(url)){
-			src_dest += `${currentUrl}    ${url}\n`
 			q_urls.push(url)
 		}
 	})
@@ -116,6 +116,7 @@ let requestFunc = (url) => {
 				getCourse(res.getBody('utf8'))				
 			}
 			let urls = getUrl(res.body)
+			Object.assign(src_dest, {[url]: urls})
 			pushUrl(urls)
 			// if(q_urls.length < 100){
 				// let urls = getUrl(res.body)
@@ -139,36 +140,38 @@ let requestFunc = (url) => {
 
 
 let runBot = () => {
-	new Promise((resolve, reject) => {
-		let position = q_urls.findIndex(url => url.indexOf(currentHost) == -1)
-		let url = (q_urls.splice(position, 1))[0]
-		if(url != undefined){
-			setCurrentHost(url)
-			resolve(url)
-		}
-	}).then((url) => {
-		return new Promise((resolve, reject) => {
-			robotto.canCrawl(userAgent, url, function(err, isAllowed) {
-			    if (err || isAllowed) {
-					resolve({
-						canCrawl: true,
-						url
-					})
+	if(q_urls.length != 0 || success_urls.length != LIMIT){
+		new Promise((resolve, reject) => {
+			let position = q_urls.findIndex(url => url.indexOf(currentHost) == -1)
+			let url = (q_urls.splice(position, 1))[0]
+			if(url != undefined){
+				setCurrentHost(url)
+				resolve(url)
+			}
+		}).then((url) => {
+			return new Promise((resolve, reject) => {
+				robotto.canCrawl(userAgent, url, function(err, isAllowed) {
+				    if (err || isAllowed) {
+						resolve({
+							canCrawl: true,
+							url
+						})
 
-			    } else {
-					resolve({
-						canCrawl: false,
-						url
-					})
-			    }
+				    } else {
+						resolve({
+							canCrawl: false,
+							url
+						})
+				    }
+				})
 			})
-		})
-	}).then((value) => {
-		if(value.canCrawl){
-			console.log(`[${countVisited + 1}] : ${value.url}`)
-			requestFunc(value.url)
-		}
-	}).then(checkBot)
+		}).then((value) => {
+			if(value.canCrawl){
+				console.log(`[${countVisited + 1}] : ${value.url}`)
+				requestFunc(value.url)
+			}
+		}).then(checkBot)
+	}
 }
 
 q_urls.push(STARTER_URL)

@@ -9,6 +9,7 @@
     "build": "node ./src/build",
     "search": "node ./src/search",
     "bot": "node ./src/bot",
+    "pagerank": "node ./src/pagerank",
     "dev": "nodemon ./server.js",
     "deploy:prod": "node ./server.js"
   },
@@ -17,6 +18,8 @@
     "elasticlunr": "^0.9.5",
     "express": "^4.14.0",
     "http-status": "^0.2.3",
+    "lodash": "^4.17.2",
+    "pagerank.js": "^1.0.2",
     "robotto": "^1.0.13",
     "sync-request": "^3.0.1"
   },

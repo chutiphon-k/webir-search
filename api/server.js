@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const search = require('./src/search')
+const pagerank = require('./src/pagerank')
 const config = require('./config')
 
 const app = express()
@@ -14,30 +15,17 @@ app.use((req, res, next) => {
 })
 
 app.get('/api/search', (req, res) => {
-	let results = [
-		{
-			title: 'Teayeon',
-			snippet: 'SNSD',
-			url: 'http://f.ptcdn.info/983/046/000/og1ozwnfhXYFEC3zb19-o.jpg'
-		},{
-			title: 'Krystal',
-			snippet: 'f(x)',
-			url: 'http://i.imgur.com/60dJN98.jpg?1'
-		},{
-			title: 'Google',
-			snippet: 'Google Googlee Googleee',
-			url: 'https://www.google.co.th'
-		}
-	]
-	res.json(results)
-})
-
-app.get('/api/search2', (req, res) => {
-	res.send(search.getSearch(req.query.q))
+	let result = search.getSearch(req.query.q)
+	let sortType = req.query.sortType
+	switch(sortType){
+		case 'pagerank':
+			result = pagerank.getRank(result)
+	}
+	res.json(result)
 })
 
 app.get('*', (req, res) => {
-	res.send('ok')
+	res.send('WebIR-Search API')
 })
 
 let PORT = process.env.PORT || config.port

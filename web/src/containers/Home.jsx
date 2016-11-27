@@ -22,7 +22,7 @@ class Home extends Component {
     state = {}
 
 	render(){
-		const { fields, handleSubmit } = this.props
+		const { handleSubmit } = this.props
 		return (
 			<div>
 				<h1>Miracle of Pony Search</h1>

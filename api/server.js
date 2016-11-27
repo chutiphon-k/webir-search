@@ -19,7 +19,6 @@ app.get('/api/search', (req, res) => {
 	let data = search.getSearch(req.query.search)
 	page = +page || 1
 	limit = +limit || 10
-
 	switch(filter){
 		case 'pagerank':
 			data = pagerank.getRank(data)

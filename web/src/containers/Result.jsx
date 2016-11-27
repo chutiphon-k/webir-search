@@ -46,7 +46,7 @@ class Result extends Component {
 						this.props.data.map((data, index) => {
 							return (
 								<section key={index} className={styles.sectionResult}>
-									<a href={data.url}>{data.title}</a>
+									<a href={data.url}>{data.title.substring(0, 50).concat(((data.title.length > 50) ? '｡｡｡':''))}</a>
 									<div>{data.url}</div>
                                     <div dangerouslySetInnerHTML={{__html: this.setMarker(data.snippet)}} />
 								</section>

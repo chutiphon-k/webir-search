@@ -18,11 +18,14 @@ class Result extends Component {
 			return '<mark>' + func(text) + '</mark>'
 		})
 		let search = this.props.location.query.search.toLowerCase()
-		let indexQuery = (snippet.toLowerCase()).indexOf(search)
-		while(indexQuery != -1){
-			snippet = snippet.substring(0,indexQuery) + mark(snippet.substring(indexQuery, indexQuery + search.length)) + snippet.substring(indexQuery + search.length)
-			indexQuery = (snippet.toLowerCase()).indexOf(search, indexQuery + search.length + '<mark>'.length*2 + 1)
-		}
+	    let splitQuery = search.split(/(\s+)/).filter((str) => str.trim().length > 0 )
+	    splitQuery.map((value) => {
+			let indexQuery = (snippet.toLowerCase()).indexOf(value)
+			while(indexQuery != -1){
+				snippet = snippet.substring(0,indexQuery) + mark(snippet.substring(indexQuery, indexQuery + value.length)) + snippet.substring(indexQuery + value.length)
+				indexQuery = (snippet.toLowerCase()).indexOf(value, indexQuery + value.length + '<mark>'.length*2 + 1)
+			}
+	    })
 		return snippet
 	}
 

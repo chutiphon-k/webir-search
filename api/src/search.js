@@ -19,27 +19,30 @@ let getSnippet = (query, content) => {
   let queryLength = query.length
   let indexFirst = indexQuery - 50
   let indexLast = indexQuery + queryLength + 50
-
-  if(indexFirst < 0){
-    indexFirst = 0
-  } else {
-    let indexSpace = content.lastIndexOf(' ',indexFirst)
-    if(indexSpace != -1){
-      indexFirst = indexSpace + 1
+  if(indexQuery != -1){
+    if(indexFirst < 0){
+      indexFirst = 0
+    } else {
+      let indexSpace = content.lastIndexOf(' ',indexFirst)
+      if(indexSpace != -1){
+        indexFirst = indexSpace + 1
+      }
     }
-  }
 
-  if(indexLast > content.length){
-    indexLast = content.length
-  } else {
-    let indexSpace = content.indexOf(' ',indexLast)
-    if(indexSpace != -1){
-      indexLast = indexSpace
+    if(indexLast > content.length){
+      indexLast = content.length
+    } else {
+      let indexSpace = content.indexOf(' ',indexLast)
+      if(indexSpace != -1){
+        indexLast = indexSpace
+      }
     }
-  }
 
-  let snippet = content.substring(indexFirst, indexLast)
-  return snippet
+    let snippet = content.substring(indexFirst, indexLast)
+    return snippet
+  } else {
+    return -1
+  }
 }
 
 exports.getSearch = (query) => {
@@ -55,7 +58,18 @@ exports.getSearch = (query) => {
 
   let ansMaps = ans.map((value) => {
     let ansMap = idx.documentStore.getDoc(value.ref)
+    let splitQuery = query.split(/(\s+)/).filter((str) => str.trim().length > 0 )
     let snippet = getSnippet(query.toLowerCase(), ansMap.content)
+    if(snippet == -1){
+      let snippetSplit = splitQuery.map((value) => {
+        return getSnippet(value.toLowerCase(), ansMap.content)
+      })
+  
+      snippet = snippetSplit.find((snippet) => snippet != -1)
+      if(snippet == undefined){
+        snippet = ansMap.content.substring(0, 50)
+      }
+    }
     Object.assign(ansMap, {snippet}, {similarity_score: value.score})
     return ansMap
   })

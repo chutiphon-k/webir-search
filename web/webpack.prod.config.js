@@ -133,6 +133,7 @@ module.exports = {
 	    ]),
 	    new webpack.optimize.OccurrenceOrderPlugin(),
 	    new webpack.optimize.UglifyJsPlugin({
+	    	minimize: true,
 		    compress: {
 		        warnings: false
 		    }

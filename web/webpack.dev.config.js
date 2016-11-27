@@ -77,6 +77,10 @@ module.exports = {
 					}
 				]
 			},{
+		        test: /\.less$/,
+				include: path.resolve(__dirname, 'src'),
+		        loader: "style!css!postcss!less"
+			},{
 				test: /\.(png|jpg|gif)$/,
 				include: path.resolve(__dirname, 'src/assets'),
 				loader: 'url?limit=25000'

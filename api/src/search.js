@@ -4,6 +4,7 @@ const elasticlunr = require('elasticlunr')
 const readline = require('readline');
 const fs = require('fs')
 const path = require('path')
+const _ = require('lodash')
 
 let data, idx
 
@@ -45,6 +46,8 @@ let getSnippet = (query, content) => {
   }
 }
 
+
+
 exports.getSearch = (query) => {
   console.log('>>> Start Search <<<')
   let ans = idx.search(query,  {
@@ -59,6 +62,7 @@ exports.getSearch = (query) => {
   let ansMaps = ans.map((value) => {
     let ansMap = idx.documentStore.getDoc(value.ref)
     let splitQuery = query.split(/(\s+)/).filter((str) => str.trim().length > 0 )
+    let missing = splitQuery.filter((value) => ansMap.content.toLowerCase().indexOf(value.toLowerCase()) == -1 && ansMap.title.toLowerCase().indexOf(value.toLowerCase()) == -1)
     let snippet = getSnippet(query.toLowerCase(), ansMap.content)
     if(snippet == -1){
       let snippetSplit = splitQuery.map((value) => {
@@ -70,33 +74,21 @@ exports.getSearch = (query) => {
         snippet = ansMap.content.substring(0, 50)
       }
     }
-    Object.assign(ansMap, {snippet}, {similarity_score: value.score})
+    Object.assign(ansMap, {snippet, missing, similarity_score: value.score})
     return ansMap
   })
+
   console.log('>>> Search Done <<<')
+
   return ansMaps.map((ansMap) => {
-    let { id, url, title, snippet, similarity_score } = ansMap
+    let { id, url, title, snippet, missing, similarity_score } = ansMap
     return { 
         id,
         url,
         title,
         snippet,
+        missing,
         similarity_score
     }
   })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

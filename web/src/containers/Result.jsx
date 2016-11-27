@@ -27,14 +27,12 @@ class Result extends Component {
 	}
 
 	handleSelect(page) {
-		let { search, sortType, limit } = this.props.location.query
-		this.props.getSearch({page, search, sortType, limit })
+		this.props.getSearch({...this.props.location.query, page})
 	}
 
 	componentWillMount(){
 		if(!this.props.isFinish){
-			let { search, sortType, page, limit } = this.props.location.query
-			this.props.getSearch({ search, sortType, page, limit })
+			this.props.getSearch(this.props.location.query)
 		}
 	}
 

@@ -1252,7 +1252,7 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-classnames@^2.2.3, classnames@^2.2.5:
+classnames@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -4377,12 +4377,6 @@ react-proxy@^3.0.0-alpha.0:
   resolved "https://registry.yarnpkg.com/react-proxy/-/react-proxy-3.0.0-alpha.1.tgz#4400426bcfa80caa6724c7755695315209fa4b07"
   dependencies:
     lodash "^4.6.1"
-
-react-rangeslider@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/react-rangeslider/-/react-rangeslider-1.0.9.tgz#cbef46b9bee8aaf9a191292ae7ef19b272d7ec83"
-  dependencies:
-    classnames "^2.2.3"
 
 react-redux@^4.4.6:
   version "4.4.6"

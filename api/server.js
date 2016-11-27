@@ -15,15 +15,18 @@ app.use((req, res, next) => {
 })
 
 app.get('/api/search', (req, res) => {
+	let { filter, page, limit, alpha } = req.query
 	let data = search.getSearch(req.query.search)
-	let sortType = req.query.sortType
-	switch(sortType){
+	page = +page || 1
+	limit = +limit || 10
+
+	switch(filter){
 		case 'pagerank':
 			data = pagerank.getRank(data)
+		case 'rerank':
+			console.log('rerank')
 	}
 
-	let page = +req.query.page || 1
-	let limit = +req.query.limit || 10
 	let pageCount = Math.ceil(data.length/limit)
 	let pagination = {
 		pageStart: 1,

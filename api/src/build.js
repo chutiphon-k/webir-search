@@ -42,9 +42,13 @@ try {
   console.log('Read File Contents Or Success Error!!!')
 }
 
+let indexFilePath = path.join(__dirname, 'outputs', 'indexFile.json')
 
 try {
-  fs.writeFileSync(path.join(__dirname, 'outputs', 'indexFile.json'), JSON.stringify(idx, null, 2), 'utf8')
+  if(fs.existsSync(indexFilePath)){
+    fs.unlinkSync(indexFilePath)   
+  }
+  fs.writeFileSync(indexFilePath, JSON.stringify(idx, null, 2), 'utf8')
   console.log('>>> Create Index Done <<<\n')
 }
 catch(err) {
@@ -77,8 +81,13 @@ graph.rank(DAMPING, EPSILON, (node, rank) => {
     Object.assign(pagerank_score, {[node]: rank})
 })
 
+let pagerank_scorePath = path.join(__dirname, 'outputs', 'pagerank_score.json')
+
 try {
-  fs.writeFileSync(path.join(__dirname, 'outputs', 'pagerank_score.json'), JSON.stringify(pagerank_score, null, 2), 'utf8')
+  if(fs.existsSync(pagerank_scorePath)){
+    fs.unlinkSync(pagerank_scorePath)   
+  }
+  fs.writeFileSync(pagerank_scorePath, JSON.stringify(pagerank_score, null, 2), 'utf8')
   console.log('>>> Calculate PageRank Score Done <<<')
 }
 catch(err) {

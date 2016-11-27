@@ -17,6 +17,7 @@
     "cheerio": "^0.22.0",
     "elasticlunr": "^0.9.5",
     "express": "^4.14.0",
+    "fs-extra": "^1.0.0",
     "http-status": "^0.2.3",
     "lodash": "^4.17.2",
     "pagerank.js": "^1.0.2",

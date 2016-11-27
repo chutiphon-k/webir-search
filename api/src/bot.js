@@ -1,10 +1,10 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 
 const fs = require('fs')
+const fse = require('fs-extra')
 const request = require('sync-request')
 const cheerio = require('cheerio')
 const urlmodule = require("url")
-// const base64url = require('base64-url');
 const HTTPStatus = require('http-status')
 const robotto = require('robotto')
 const path = require('path')
@@ -172,6 +172,23 @@ let runBot = () => {
 			}
 		}).then(checkBot)
 	}
+}
+
+let contentsPath = path.join(__dirname, 'contents')
+let outputsPath = path.join(__dirname, 'outputs')
+
+try {
+	if(fs.existsSync(contentsPath)){
+		fse.removeSync(contentsPath)		
+	} 
+	fs.mkdirSync(contentsPath)
+
+	if(fs.existsSync(outputsPath)){
+		fse.removeSync(outputsPath)
+	} 
+	fs.mkdirSync(outputsPath)
+} catch(e) {
+	if ( e.code != 'EEXIST' ) throw e;
 }
 
 q_urls.push(STARTER_URL)

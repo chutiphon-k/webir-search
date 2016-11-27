@@ -7,8 +7,6 @@ const autoprefixer = require('autoprefixer')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = require('./config')
-// import 'bootstrap/dist/css/bootstrap.css'
-// const bootstrap = require('bootstrap/dist/css/bootstrap.css')
 
 module.exports = {
 	devtool: 'eval',

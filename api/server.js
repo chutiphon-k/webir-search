@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 const search = require('./src/search')
-const pagerank = require('./src/pagerank')
+const ranking = require('./src/ranking')
 const config = require('./config')
 
 const app = express()
@@ -15,15 +15,17 @@ app.use((req, res, next) => {
 })
 
 app.get('/api/search', (req, res) => {
+	console.log(req.query.search)
 	let { filter, page, limit, alpha } = req.query
 	let data = search.getSearch(req.query.search)
 	page = +page || 1
 	limit = +limit || 10
+	alpha = +alpha || 0.5
 	switch(filter){
 		case 'pagerank':
-			data = pagerank.getRank(data)
+			data = ranking.getPageRank(data)
 		case 'rerank':
-			console.log('rerank')
+			data = ranking.getReRank(data, alpha)
 	}
 
 	let pageCount = Math.ceil(data.length/limit)

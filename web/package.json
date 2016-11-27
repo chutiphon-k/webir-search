@@ -20,6 +20,7 @@
   "homepage": "https://github.com/chutiphon-k/webir-search#readme",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "compression": "^1.6.2",
     "express": "^4.14.0",
     "lodash": "^4.17.2",
     "react": "^15.4.0",

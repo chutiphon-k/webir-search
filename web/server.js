@@ -1,10 +1,12 @@
-var express = require('express')
-var path = require('path')
+const express = require('express')
+const path = require('path')
+const compression = require('compression')
 const config = require('./config')
 
 var app = express()
 
-app.use(express.static(__dirname))
+app.use(compression())
+app.use(express.static(__dirname, { maxAge: 86400000 }))
 
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'index.html'))

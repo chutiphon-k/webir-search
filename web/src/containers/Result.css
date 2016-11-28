@@ -5,4 +5,36 @@
 
 mark {
 	background: #fdc2cd;
+	padding: 0;
+}
+
+html, body {
+	margin: 2em;
+}
+
+.eiei, h1 {
+	color: #D2D7D3;
+}
+
+a {
+	color: #65C6BB;
+}
+
+a:hover {
+	color: #16A085;
+	text-decoration: none;
+}
+
+button {
+	border-radius:10px;
+	color: #000;
+	padding: 0.5em 1em;
+	background-color: #c7b0d1;
+	font-size: 1.3em;
+	border: none;
+	margin: 1em;
+}
+
+button:hover {
+	background-color: #b48bc5;
 }

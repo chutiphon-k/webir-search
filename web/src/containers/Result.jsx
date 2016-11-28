@@ -43,8 +43,9 @@ class Result extends Component {
 		return (
 			<div>
 				<h1>Result</h1>
-				<Link to={'/'}><h2>Back</h2></Link>
-				<div>
+				<Link to={'/'}><button>Back</button></Link>
+
+				<div className="eiei">
 					{
 						this.props.data.map((data, index) => {
 							return (
@@ -72,6 +73,7 @@ class Result extends Component {
 						})
 					}
 				</div>
+				<br /><br /> 
 				<Pagination
 					prev
 					next

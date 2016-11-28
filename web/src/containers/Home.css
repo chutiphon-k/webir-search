@@ -14,8 +14,7 @@ body, html {
 }
 
 input[type=text], .field {
-    border: 2px solid #8E44AD;
-	border-left-radius:10px;
+    border: 2px solid #6C7A89;
 	margin: 1em 1em 1em 0;
 	height: 2.5em;
 	width: 27em;
@@ -32,6 +31,7 @@ button {
 	background-color: #c7b0d1;
 	font-size: 1.3em;
 	border: none;
+	margin-top: 1em;
 }
 
 button:hover {

@@ -48,7 +48,7 @@ try {
   if(fs.existsSync(indexFilePath)){
     fs.unlinkSync(indexFilePath)   
   }
-  fs.writeFileSync(indexFilePath, JSON.stringify(idx, null, 2), 'utf8')
+  fs.writeFileSync(indexFilePath, JSON.stringify(idx), 'utf8')
   console.log('>>> Create Index Done <<<\n')
 }
 catch(err) {
@@ -87,7 +87,7 @@ try {
   if(fs.existsSync(pagerank_scorePath)){
     fs.unlinkSync(pagerank_scorePath)   
   }
-  fs.writeFileSync(pagerank_scorePath, JSON.stringify(pagerank_score, null, 2), 'utf8')
+  fs.writeFileSync(pagerank_scorePath, JSON.stringify(pagerank_score), 'utf8')
   console.log('>>> Calculate PageRank Score Done <<<')
 }
 catch(err) {

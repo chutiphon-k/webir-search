@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Athiti');
+
 .sectionResult {
 	font-size: 20px;
 	margin: 10px 10px 10px 10px;
@@ -8,11 +10,15 @@ mark {
 	padding: 0;
 }
 
-html, body {
-	margin: 2em;
+body, html {
+    background-color: #000;
+ 	text-align: center;
+    font-family: 'Athiti', sans-serif;
+    margin: 2em;
+    color: #000;
 }
 
-.eiei, h1 {
+.result, h1 {
 	color: #D2D7D3;
 }
 
@@ -37,4 +43,8 @@ button {
 
 button:hover {
 	background-color: #b48bc5;
+}
+
+.backbutton {
+
 }

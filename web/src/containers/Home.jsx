@@ -27,8 +27,8 @@ class Home extends Component {
 			<div>
 				<img src={imgPony1} className={styles.logo} />
 			    <form onSubmit={handleSubmit} className='form' action='javascript:void(0)'>
-					<Field class="field" name="search" component="input" type="text" autoFocus />
-					<Field class="field" name="filter" component="select">
+					<Field className="field" name="search" component="input" type="text" autoFocus />
+					<Field className="field" name="filter" component="select">
 						<option value="similarity">Similarity</option>
 						<option value="pagerank">PageRank</option>
 						<option value="rerank">Rerank</option>

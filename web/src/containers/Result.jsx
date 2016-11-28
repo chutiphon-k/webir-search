@@ -43,32 +43,39 @@ class Result extends Component {
 		return (
 			<div>
 				<h1>Result</h1>
-				<Link to={'/'}><button>Back</button></Link>
-
-				<div className="eiei">
+				<Link to={'/'}><button className='backbutton'>Back</button></Link>
+				<hr />
+				<div className="result">
 					{
 						this.props.data.map((data, index) => {
 							return (
-								<section key={index} className={styles.sectionResult}>
-									<a href={data.url}>{data.title.substring(0, 50).concat(((data.title.length > 50) ? '｡｡｡':''))}</a>
-									<div>{data.url}</div>
-                                    <div dangerouslySetInnerHTML={{__html: this.setMarker(data.snippet)}} />
-                                    <div style={{color:'red'}}>
-										{
-											(data.missing.length > 0) && 'Missing : '
-										}
-										{
-                                    		data.missing.map((value, index) => {
-                                    			return(
-                                    				<span key={index}>
-	                                    				<span dangerouslySetInnerHTML={{__html: `<strike>${value}</strike>`}} />
-	                                    				{' '}
-                                    				</span>
-                                    			)
-                                    		})
-                                    	}
-                                    </div>
-								</section>
+								<div>
+									<section key={index} className={styles.sectionResult}>
+										<a href={data.url}>
+											{
+												(data.title) ? data.title.substring(0, 50).concat(((data.title.length > 50) ? '｡｡｡':'')) : '[BOT] No Title'
+											}
+										</a>
+										<div>{data.url}</div>
+	                                    <div dangerouslySetInnerHTML={{__html: this.setMarker(data.snippet)}} />
+	                                    <div style={{color:'red'}}>
+											{
+												(data.missing.length > 0) && 'Missing : '
+											}
+											{
+	                                    		data.missing.map((value, index) => {
+	                                    			return(
+	                                    				<span key={index}>
+		                                    				<span dangerouslySetInnerHTML={{__html: `<strike>${value}</strike>`}} />
+		                                    				{' '}
+	                                    				</span>
+	                                    			)
+	                                    		})
+	                                    	}
+	                                    </div>
+									</section>
+									<hr />
+								</div>
 							)
 						})
 					}

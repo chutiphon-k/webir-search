@@ -23,7 +23,7 @@ class App extends Component {
 				{this.props.children}
 				<div>
 					<br /><br /><br /><br />
-					<label class="comment">Development By</label>
+					<label className="comment">Development By</label>
 					<div>
 						<img src={logoReact} className={styles.logoDev} />
 						<img src={logoRedux} className={styles.logoDev} />

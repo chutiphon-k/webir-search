@@ -1,26 +1,22 @@
-@import url('https://fonts.googleapis.com/css?family=Pridi');
-
-.logoDev {
-	max-height: 60px;
-	max-width: 60px;
-}
+@import url('https://fonts.googleapis.com/css?family=Athiti');
 
 body, html {
-    background-color: #ECECEC;
+    background-color: #000;
  	text-align: center;
-    font-family: 'Pridi', serif;
+    font-family: 'Athiti', sans-serif;
     margin: 2em;
+    color: #000;
 }
 
-input[type=text] {
-    border: 3px solid #8E44AD;
-	border-radius:10px;
-	margin: 1em;
+input[type=text], .field {
+    border: 2px solid #6C7A89;
+	margin: 1em 1em 1em 0;
 	height: 2.5em;
-	width: 30em;
+	width: 27em;
 	padding-right: 1em;
 	padding-left: 1em;
 	font-size: 1.2em;
+	color: #000;
 }
 
 button {
@@ -30,6 +26,7 @@ button {
 	background-color: #c7b0d1;
 	font-size: 1.3em;
 	border: none;
+	margin-top: 1em;
 }
 
 button:hover {
@@ -37,11 +34,14 @@ button:hover {
 }
 
 .logo {
-	max-height: 150px;
-	max-width: 150px;
-	margin: 1em;
+	max-height: 50%;
+	max-width: 50%;
 }
 
 h1 {
 	font-size: 3em;
+}
+
+label {
+	color: #D2D7D3;
 }

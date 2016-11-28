@@ -25,14 +25,13 @@ class Home extends Component {
 		const { handleSubmit } = this.props
 		return (
 			<div>
-				<h1>Miracle of Pony Search</h1>
 				<img src={imgPony1} className={styles.logo} />
 			    <form onSubmit={handleSubmit} className='form' action='javascript:void(0)'>
-					<Field name="search" component="input" type="text" autoFocus />
-					<Field name="filter" component="select">
-						<option value="rerank">Rerank</option>
+					<Field className="field" name="search" component="input" type="text" autoFocus />
+					<Field className="field" name="filter" component="select">
 						<option value="similarity">Similarity</option>
 						<option value="pagerank">PageRank</option>
+						<option value="rerank">Rerank</option>
 					</Field>
 					<br />
 					{ 
@@ -76,7 +75,7 @@ const selector = formValueSelector('home')
 
 const mapStateToProps = (state) => ({
 	initialValues: {
-		filter: 'rerank',
+		filter: 'similarity',
 		alpha: 0.5
 	},
 	searchText: selector(state, 'search'),

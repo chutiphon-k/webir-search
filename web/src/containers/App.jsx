@@ -20,11 +20,10 @@ class App extends Component {
 	render(){
 		return (
 			<div className={styles.container} >
-				<hr />
 				{this.props.children}
-				<hr />
 				<div>
-					<div>Development By</div><br />
+					<br /><br /><br /><br />
+					<label className="comment">Development By</label>
 					<div>
 						<img src={logoReact} className={styles.logoDev} />
 						<img src={logoRedux} className={styles.logoDev} />

@@ -8,10 +8,10 @@ import { imgPony1 } from 'assets/images'
 
 const { getSearch } = actions
 
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+const renderField = ({ input, label, type, step, min, max, meta: { touched, error, warning } }) => (
   <div>
     <label>{label}</label>{' '}
-	<input {...input} placeholder={label} type={type} />
+	<input {...input} type={type} step={step} min={min} max={max} />
 	<br />
 	{touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
@@ -28,7 +28,7 @@ class Home extends Component {
 				<h1>Miracle of Pony Search</h1>
 				<img src={imgPony1} className={styles.logo} />
 			    <form onSubmit={handleSubmit} className='form' action='javascript:void(0)'>
-					<Field name="search" component="input" type="text" />
+					<Field name="search" component="input" type="text" autoFocus />
 					<Field name="filter" component="select">
 						<option value="rerank">Rerank</option>
 						<option value="similarity">Similarity</option>
@@ -38,7 +38,7 @@ class Home extends Component {
 					{ 
 						(this.props.filter == 'rerank') && 
 						<div>
-							<Field name="alpha" component={renderField} type="number" label="Alpha :" />
+							<Field name="alpha" component={renderField} type="number" label="Alpha :" step="0.1" min="0" max="1" />
 						</div> 
 					}
 					<button

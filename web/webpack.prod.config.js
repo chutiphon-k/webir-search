@@ -92,6 +92,10 @@ module.exports = {
 					publicPath: "./build"
 				})
 			},{
+		        test: /\.less$/,
+				include: path.resolve(__dirname, 'src'),
+		        loader: "style!css!postcss!less"
+			},{
 				test: /\.(png|jpg|gif)$/,
 				include: path.resolve(__dirname, 'src/assets'),
 				loader: 'url?limit=25000'
@@ -135,6 +139,8 @@ module.exports = {
 	    new webpack.optimize.UglifyJsPlugin({
 	    	minimize: true,
 		    compress: {
+		    	drop_console: true,
+		        drop_debugger: true,
 		        warnings: false
 		    }
 		}),

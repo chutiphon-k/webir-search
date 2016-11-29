@@ -3,7 +3,7 @@ import { push } from 'react-router-redux'
 
 export default ({ search, filter, page, limit , alpha }) => dispatch => dispatch({
 	[CALL_API]: {
-		endpoint: `http://localhost:9090/api/search?search=${search}${(filter)? `&filter=${filter}`:''}${(filter == 'rerank')? `&alpha=${alpha}`:''}${(page)? `&page=${page}`:''}${(limit)? `&limit=${limit}`:''}`,
+		endpoint: `http://chutiphon-k.info:9090/api/search?search=${search}${(filter)? `&filter=${filter}`:''}${(filter == 'rerank')? `&alpha=${alpha}`:''}${(page)? `&page=${page}`:''}${(limit)? `&limit=${limit}`:''}`,
 		headers: {
 		  'Accept': 'application/json',
 		  'Content-Type': 'application/json'

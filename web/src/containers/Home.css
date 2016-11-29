@@ -8,11 +8,22 @@ body, html {
     color: #000;
 }
 
-input[type=text], .field {
+input[type=text]{
     border: 2px solid #6C7A89;
 	margin: 1em 1em 1em 0;
 	height: 2.5em;
 	width: 27em;
+	padding-right: 1em;
+	padding-left: 1em;
+	font-size: 1.2em;
+	color: #000;
+}
+
+.selectField{
+    border: 2px solid #6C7A89;
+	margin: 1em 1em 1em 0;
+	height: 2.5em;
+	width: 7em;
 	padding-right: 1em;
 	padding-left: 1em;
 	font-size: 1.2em;

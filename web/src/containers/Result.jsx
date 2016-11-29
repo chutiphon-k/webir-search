@@ -49,8 +49,8 @@ class Result extends Component {
 					{
 						this.props.data.map((data, index) => {
 							return (
-								<div>
-									<section key={index} className={styles.sectionResult}>
+								<div key={index+100}>
+									<section className={styles.sectionResult}>
 										<a href={data.url}>
 											{
 												(data.title) ? data.title.substring(0, 50).concat(((data.title.length > 50) ? '｡｡｡':'')) : '[BOT] No Title'
@@ -65,7 +65,7 @@ class Result extends Component {
 											{
 	                                    		data.missing.map((value, index) => {
 	                                    			return(
-	                                    				<span key={index}>
+	                                    				<span key={index+1000}>
 		                                    				<span dangerouslySetInnerHTML={{__html: `<strike>${value}</strike>`}} />
 		                                    				{' '}
 	                                    				</span>

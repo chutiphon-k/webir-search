@@ -2,24 +2,32 @@
 
 ## Screenshot
 <p align="center">
-	<img src="https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-home-v2.png">
+	<img src="https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-home-v3.png">
 
-	<img src="https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-result-v1.png">
+	<img src="https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-result-v2.png">
 </p>
 
 ## Packages (main)
+
+### API Server
 - Cheerio
 - Elasticlunr
 - Express
+- Lodash
+- Pagerank.js
+- Robotto
+
+### Web Application
 - React
 - React-Dom
 - Redux
+- Express
 - Webpack 2
 - Webpack-Dev-Server
 - Babel
-- ES6
 - Bootstrap
 - React-Bootstrap
+- lodash
 
 ## Using Api
 ```bash
@@ -31,7 +39,7 @@ npm run build # For create index file
 npm run search # For search query
 npm run dev # For run dev api server
 npm run deploy:prod # For run prodtions api server
-open url http://localhost:9090/api/search
+open url http://localhost:9090/api/search?search=Home
 ```
 
 ## Using Web

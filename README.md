@@ -3,7 +3,6 @@
 ## Screenshot
 <p align="center">
 	<img src="https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-home-v3.png">
-
 	<img src="https://github.com/chutiphon-k/webir-search/blob/master/README-images/screenshot-result-v2.png">
 </p>
 
